@@ -15,7 +15,7 @@ export const App = () => {
   const [lazyLoad, { error, isLoading, data: newData }] = useLazyGetAllProductsQuery();
   const [value, setValue] = useState('');
   const [updateValue, setUpdateValue] = useState('');
-  const { data, refetch } = useGetAllProductsQuery(1000);
+  const { data, refetch } = useGetAllProductsQuery();
   const [createProduct, { error: createError, isLoading: isCreateLoading }] =
     useAddProductMutation();
   const [deleteProduct, { data: deleteData }] = useDeleteProductMutation();
@@ -27,7 +27,7 @@ export const App = () => {
     };
 
     await createProduct(product).unwrap();
-    refetch();
+    // refetch();
     setValue('');
   };
 

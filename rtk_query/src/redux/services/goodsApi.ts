@@ -17,20 +17,14 @@ export const goodsApi = createApi({
     },
   }),
   endpoints: (builder) => ({
-    getAllProducts: builder.query<IGood[], number>({
-      query: (limit = 1) => ({
+    getAllProducts: builder.query<IGood[], number | void>({
+      query: (limit: number) => ({
         url: 'goods',
         params: {
           _limit: limit,
         },
 
-        providesTags: (result: IGood[]) =>
-          result
-            ? [
-                ...result.map(({ id }) => ({ type: 'Post' as const, id })),
-                { type: 'Products', id: 'LIST' },
-              ]
-            : [{ type: 'Products', id: 'LIST' }],
+        providesTags: [{ type: 'Products', id: 'LIST' }],
       }),
     }),
 
